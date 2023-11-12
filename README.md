@@ -28,6 +28,6 @@ Il suffit d'executer le fichier et de redémarrer sa machine.
 ## Utiliser le projet :
 
 Ouvrir un temrinal ou CMd et exécuter la commande suivante :                  
-  docker run "Le nom que vous lui avez donner"
-  Exemple =
+  docker run "Le nom que vous lui avez donner"                                                          
+  Exemple :
   ![image](https://github.com/med0104/ue19_labo09-10/assets/150246758/cd1ade86-73eb-460b-b6f5-25d3042ece69)
