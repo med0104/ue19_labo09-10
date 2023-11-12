@@ -1,5 +1,9 @@
 # ue19_labo09-10
 
-## test
 
-sdf
+## Descripion du projet : 
+
+--> Fichier python (app.py) qui fait appelle à une API pour connaitre l'adresse IP public
+--> fichier Docker (Dockerfile) pour conteneriser le fichier python
+
+
