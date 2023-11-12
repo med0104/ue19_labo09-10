@@ -4,7 +4,7 @@
 ## Descripion du projet : 
 
 --> Fichier python (app.py) qui fait appelle à une API pour connaitre l'adresse IP public                                  
---> fichier Docker (Dockerfile) pour conteneriser le fichier python
+--> fichier Docker (Dockerfile) pour conteneuriser le fichier python
 
 ## Comment installer et exécuter le projet
 
