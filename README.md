@@ -17,7 +17,7 @@ Il suffit d'executer le fichier et de redémarrer sa machine.
 2. Créer un dossier et y insérez les fichiers
 3. Lancer le cmd ou temrinal (dépend de votre système d'exploitation)
 4. Accéder au répertoire se trouvant le fichier app.py et DockerFile
-5. Taper la commande suivante pour créer un conteners :
+5. Taper la commande suivante pour créer un conteners :                                     
    docker build -t "Le nom que vous souhaiter mettre" .
 6. Patienter et c'est bon !
 
