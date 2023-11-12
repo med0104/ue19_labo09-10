@@ -23,7 +23,7 @@ Il suffit d'executer le fichier et de redémarrer sa machine.
 
 ## Utiliser le projet :
 
-Ouvrir un temrinal ou CMd et exécuter la commande suivante :
+Ouvrir un temrinal ou CMd et exécuter la commande suivante :                  
   docker run "Le nom que vous lui avez donner"
    
 
