@@ -1,4 +1,4 @@
-name: Build and Publish Docker Container
+name: docker.pkg.github.com/med0104/docker-image
 
 on:
   push:
