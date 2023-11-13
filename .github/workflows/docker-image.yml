@@ -1,4 +1,4 @@
-name: Build-and-Publish-Docker-Container
+name: build-and-publish-docker-container
 
 on:
   push:
@@ -23,5 +23,5 @@ jobs:
       run: |
         docker buildx create --use
         docker login docker.pkg.github.com -u secrets.ADDRESE -p secrets.MDP
-        docker buildx build --platform linux/amd64 -t docker.pkg.github.com/med0104/Build-and-Publish-Docker-Container .
-        docker push docker.pkg.github.com/med0104/Build-and-Publish-Docker-Container:latest
+        docker buildx build --platform linux/amd64 -t docker.pkg.github.com/med0104/build-and-publish-docker-container .
+        docker push docker.pkg.github.com/med0104/build-and-publish-docker-container:latest
