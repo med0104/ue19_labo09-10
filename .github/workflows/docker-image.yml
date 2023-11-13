@@ -16,7 +16,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
-    - name: Build and push Docker container
+    - name: build-and-publish-docker-container
       env:
         DOCKER_USERNAME: ${{ secrets.ADDRESE }}
         DOCKER_PASSWORD: ${{ secrets.MDP }}
