@@ -18,10 +18,10 @@ jobs:
 
     - name: Build and push Docker container
       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.ADDRESE }}
+        DOCKER_PASSWORD: ${{ secrets.MDP }}
       run: |
         docker buildx create --use
-        docker login docker.pkg.github.com -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        docker login docker.pkg.github.com -u secrets.ADDRESE -p secrets.MDP
         docker buildx build --platform linux/amd64 -t docker.pkg.github.com/votre-utilisateur/nom-de-votre-image:latest .
         docker push docker.pkg.github.com/votre-utilisateur/nom-de-votre-image:latest
