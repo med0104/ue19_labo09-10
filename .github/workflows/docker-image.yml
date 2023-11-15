@@ -1,60 +1,24 @@
-# Ce workflow utilise des actions qui ne sont pas certifiées par GitHub.
-# Elles sont fournies par un tiers et régies par
-# des conditions d’utilisation du service, une politique de confidentialité et un support distincts.
-# documentation en ligne.
-
-# GitHub recommande d’épingler les actions à un SHA de commit.
-# Pour obtenir une version plus récente, vous devez mettre à jour le SHA.
-# Vous pouvez également référencer une balise ou une branche, mais l’action peut changer sans avertissement.
-
-name: Publish Docker image
-
+name: build-and-publish-docker-container
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+    branches:
+      - main
 jobs:
-  push_to_registries:
-    name: Push Docker image to multiple registries
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
-      
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-        with:
-          username: ${{ secrets.ADDRESE }}
-          password: ${{ secrets.MDP }}
-      
-      - name: Log in to the Container registry
-        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.TT }}
-      
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: |
-            my-docker-hub-namespace/my-docker-hub-repository
-            ghcr.io/${{ github.repository }}
-      
-      - name: Build and push Docker images
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Aqua Security Trivy
-        uses: aquasecurity/trivy-action@0.14.0
-            
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    - name: build-and-publish-docker-container
+      env:
+        DOCKER_USERNAME: ${{ secrets.ADDRESE }}
+        DOCKER_PASSWORD: ${{ secrets.MDP }}
+      run: |
+        docker buildx create --use
+        docker login docker.pkg.github.com -u secrets.ADDRESE -p secrets.MDP
+        docker buildx build --platform linux/amd64 -t docker.pkg.github.com/med0104/ue19_labo09-10 --push .
+        docker push docker.pkg.github.com/med0104/ue19_labo09-10:latest
+        docker buildx build --platform linux/amd64 -t github.com/med0104/ue19_labo09-10 --push .
+        docker push github.com/med0104/ue19_labo09-10:latest
