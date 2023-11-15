@@ -1,11 +1,11 @@
-# Ce workflow utilise des actions qui ne sont pas certifiées par GitHub.
-# Elles sont fournies par un tiers et régies par
-# des conditions d’utilisation du service, une politique de confidentialité et un support distincts.
-# documentation en ligne.
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
 
-# GitHub recommande d’épingler les actions à un SHA de commit.
-# Pour obtenir une version plus récente, vous devez mettre à jour le SHA.
-# Vous pouvez également référencer une balise ou une branche, mais l’action peut changer sans avertissement.
+# GitHub recommends pinning actions to a commit SHA.
+# To get a newer version, you will need to update the SHA.
+# You can also reference a tag or branch, but the action may change without warning.
 
 name: Publish Docker image
 
@@ -26,18 +26,18 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       
-      # - name: Log in to Docker Hub
-      #   uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-      #   with:
-      #     username: ${{ secrets.ADDRESE }}
-      #     password: ${{ secrets.MDP }}
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.NAMEDOCKER }}
+          password: ${{ secrets.MDPDOCKER }}
       
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.TT }}
+          password: ${{ secrets.TT}}
       
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -54,7 +54,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Aqua Security Trivy
-        uses: aquasecurity/trivy-action@0.14.0
-            
